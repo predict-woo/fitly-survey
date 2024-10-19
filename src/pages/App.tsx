@@ -5,8 +5,8 @@ import Loading from './Loading'
 import Result from './Result'
 
 const App = () => (
-  <div className="flex h-screen flex-col items-center justify-center bg-white">
-    <div className="mx-auto flex size-full h-screen max-w-[500px] flex-col items-center justify-center bg-white px-4 py-6">
+  <div className="flex size-full h-dvh flex-col items-center justify-center bg-white">
+    <div className="mx-auto flex size-full max-w-[500px] flex-col items-center justify-center bg-white px-4 py-6">
       <Switch>
         <Route path="/" component={Start} />
         <Route path="/survey" component={Survey} />

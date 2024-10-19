@@ -13,13 +13,13 @@ const PreRegistration = () => {
         <br />
         피트니스 소식과 정보를 제공해드립니다 :)
       </p>
-      <div className="flex w-full gap-[16px]">
+      <div className="flex w-full gap-[16px] ">
         <input
           type="email"
           placeholder="이메일을 입력해주세요"
-          className="flex-1 border-b border-black outline-none focus:outline-none"
+          className="w-full rounded-none border-b border-black outline-none focus:outline-none"
         />
-        <button className="rounded-md border border-black px-4 py-2 text-[14px] font-semibold">
+        <button className="whitespace-nowrap rounded-md border border-black px-4 py-2 text-[14px] font-semibold">
           알림 신청하기
         </button>
       </div>

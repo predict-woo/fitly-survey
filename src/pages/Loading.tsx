@@ -21,6 +21,9 @@ function Loading() {
   const setCharacter = resultStore((state) => state.setCharacter)
   const setSupplements = resultStore((state) => state.setSupplements)
   useEffect(() => {
+    if (!userInput.name) {
+      setLocation('/')
+    }
     const main = async () => {
       const resultCharacter = getCharacter(userInput as Partial<UserInput>)
       setCharacter(resultCharacter)
@@ -37,7 +40,7 @@ function Loading() {
       }, 1000)
     }
     main()
-  }, [])
+  }, [userInput, setCharacter, setSupplements, setLocation])
 
   // console.log(resultCharacter)
 

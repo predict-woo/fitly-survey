@@ -19,7 +19,9 @@ const Result = () => {
   >([])
 
   useEffect(() => {
-    console.log(supplements)
+    if (!userInput.name || !character.name || !supplements.length) {
+      setLocation('/')
+    }
     // pick top 10 supplements
     const top10Supplements = supplements.slice(0, 10)
     // get all unique categories (which order is same as the order of the supplements)
@@ -38,7 +40,7 @@ const Result = () => {
         )
       }))
     )
-  }, [supplements])
+  }, [supplements, character, userInput, setLocation])
 
   const handleBack = () => {
     setLocation('/loading')
