@@ -80,15 +80,25 @@ const Result = () => {
                     <h3 className="overflow-hidden truncate whitespace-nowrap text-[14px] font-bold">
                       {supplement.name}
                     </h3>
-                    <p className="text-[12px] text-gray-500">
-                      {supplement.characteristics.join(', ')}
+                    <p className="mt-[4px] text-[12px] text-gray-500">
+                      {supplement.description}
                     </p>
-                    <button className="mt-[12px] rounded-full bg-primary px-4 py-2 text-[12px] font-medium text-white">
-                      구매하러 가기
-                    </button>
+                    <div className="mt-[12px] flex items-center gap-4">
+                      <span className="text-[12px] text-black">
+                        {supplement.price}원
+                      </span>
+                      <a
+                        href={supplement.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-full bg-primary px-[10px] py-[4px] text-[12px] font-medium text-white"
+                      >
+                        구매하러 가기
+                      </a>
+                    </div>
                   </div>
                   <div className="ml-auto flex size-[100px] items-center justify-center bg-gray-200">
-                    <span className="text-gray-500">Image</span>
+                    <img src={supplement.image} alt={supplement.name} />
                   </div>
                 </div>
               ))}

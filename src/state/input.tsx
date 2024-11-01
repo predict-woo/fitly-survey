@@ -307,7 +307,7 @@ export const questions: QuestionType[] = [
     input: {
       type: 'slider',
       min: 1,
-      max: 30,
+      max: 15,
       value: 7
     },
     key: 'price'

@@ -81,28 +81,32 @@ function Survey() {
               />
             )}
             {question.input.type === 'select' && (
-              <RadioGroup
-                value={
-                  userInput[question.key]
-                    ? ([userInput[question.key]] as string[])
-                    : []
-                }
-                onChange={(e) => setKey(question.key, e[0])}
-                labels={question.input.options}
-                multiSelect={false}
-              />
+              <div className="max-h-[250px] w-full overflow-y-auto">
+                <RadioGroup
+                  value={
+                    userInput[question.key]
+                      ? ([userInput[question.key]] as string[])
+                      : []
+                  }
+                  onChange={(e) => setKey(question.key, e[0])}
+                  labels={question.input.options}
+                  multiSelect={false}
+                />
+              </div>
             )}
             {question.input.type === 'checkbox' && (
-              <RadioGroup
-                value={
-                  userInput[question.key]
-                    ? (userInput[question.key] as string[])
-                    : []
-                }
-                onChange={(e) => setKey(question.key, e)}
-                labels={question.input.options}
-                multiSelect={true}
-              />
+              <div className="max-h-[250px] w-full overflow-y-auto">
+                <RadioGroup
+                  value={
+                    userInput[question.key]
+                      ? (userInput[question.key] as string[])
+                      : []
+                  }
+                  onChange={(e) => setKey(question.key, e)}
+                  labels={question.input.options}
+                  multiSelect={true}
+                />
+              </div>
             )}
             {question.input.type === 'slider' && (
               <Slider

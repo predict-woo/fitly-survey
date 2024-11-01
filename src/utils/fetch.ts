@@ -10,15 +10,25 @@ export const fetchSupplements = async (): Promise<Supplement[]> => {
     .split('\n')
     .slice(1)
     .map((row) => {
-      const [category, name, brand, characteristics, price, link] =
-        row.split('\t')
+      const [
+        category,
+        name,
+        brand,
+        characteristics,
+        price,
+        link,
+        image,
+        description
+      ] = row.split('\t')
       return {
         category: category as SupplementCategory,
         name,
         brand,
         characteristics: characteristics.split(' '),
         price: parseInt(price),
-        link
+        link,
+        image,
+        description
       }
     })
   return supplements

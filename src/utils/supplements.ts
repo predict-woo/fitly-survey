@@ -20,6 +20,8 @@ export type Supplement = {
   characteristics: string[]
   price: number
   link: string
+  image: string
+  description: string
 }
 
 const cuttingSupplements: SupplementCategory[] = [
