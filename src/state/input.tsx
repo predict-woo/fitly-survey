@@ -43,6 +43,7 @@ export type QuestionType = {
     | {
         type: 'number'
         placeholder: string
+        suffix?: string
       }
     | {
         type: 'select'
@@ -59,6 +60,7 @@ export type QuestionType = {
         options: string[]
       }
   key: keyof UserInput
+  validation?: (value: any) => boolean
 }
 
 export const questions: QuestionType[] = [
@@ -70,7 +72,8 @@ export const questions: QuestionType[] = [
       type: 'text',
       placeholder: '홍길동'
     },
-    key: 'name'
+    key: 'name',
+    validation: (value: string) => /^[가-힣]{2,5}$/.test(value)
   },
   {
     number: 2,
@@ -83,9 +86,11 @@ export const questions: QuestionType[] = [
     subTitle: '숫자만 입력해주세요',
     input: {
       type: 'number',
-      placeholder: 'N 년'
+      placeholder: 'N 년',
+      suffix: '년'
     },
-    key: 'experience'
+    key: 'experience',
+    validation: (value: number) => value >= 0 && value < 50
   },
   {
     number: 3,
@@ -93,9 +98,11 @@ export const questions: QuestionType[] = [
     subTitle: '숫자만 입력해주세요',
     input: {
       type: 'number',
-      placeholder: '만 N살'
+      placeholder: '만 N살',
+      suffix: '살'
     },
-    key: 'age'
+    key: 'age',
+    validation: (value: number) => value > 10 && value < 90
   },
   {
     number: 4,
@@ -103,19 +110,23 @@ export const questions: QuestionType[] = [
     subTitle: '정수로 입력해주세요',
     input: {
       type: 'number',
-      placeholder: '160 CM'
+      placeholder: '160 CM',
+      suffix: 'CM'
     },
-    key: 'height'
+    key: 'height',
+    validation: (value: number) => value > 100 && value < 250
   },
   {
     number: 5,
     title: '몸무게를 입력해주세요',
     subTitle: '정수로 입력해주세요',
     input: {
-      type: 'text',
-      placeholder: '60 KG'
+      type: 'number',
+      placeholder: '60 KG',
+      suffix: 'KG'
     },
-    key: 'weight'
+    key: 'weight',
+    validation: (value: number) => value > 10 && value < 250
   },
   {
     number: 6,

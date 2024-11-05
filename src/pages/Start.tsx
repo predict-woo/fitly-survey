@@ -1,24 +1,52 @@
 import { Link } from 'wouter'
+import Marquee from 'react-fast-marquee'
+import Title from 'components/Title'
 
 function Start() {
   return (
-    <div className="flex size-full flex-col items-center justify-between">
-      <div className="text-center">
-        <h1 className="mb-1 mt-32 text-2xl font-bold">더 강한 나를 위한</h1>
-        <h1 className="text-2xl font-bold">피트니스 제품 추천받기</h1>
-        <p className="mt-6 text-gray-400">
-          내 취향과 목표에 맞는
-          <br />
-          피트니스 제품을 추천받을 수 있어요
-        </p>
+    <div className="flex size-full flex-col items-center justify-between pt-[50px]">
+      <Title />
+      <div className="fixed bottom-[90px] left-0 z-0 w-full text-[#636363]">
+        <Marquee className="border-t border-[#DADADA] py-[20px]">
+          <span className="text-[25px]">
+            #Protein 프로틴 #BCAA 아미노산 #Booster 부스터 #Creatine 크레아틴
+            #Gainer 게이너 #Vitamin 비타민 #Omega 3 오메가 3 #Beta-alanine
+            베타알라닌
+          </span>
+        </Marquee>
+        <Marquee
+          className="border-t border-[#DADADA] py-[20px]"
+          direction="right"
+          speed={60}
+        >
+          <span className="text-[25px]">
+            #Protein 프로틴 #BCAA 아미노산 #Booster 부스터 #Creatine 크레아틴
+            #Gainer 게이너 #Vitamin 비타민 #Omega 3 오메가 3 #Beta-alanine
+            베타알라닌
+          </span>
+        </Marquee>
+        <Marquee className="border-t border-[#DADADA] py-[20px]" speed={70}>
+          <span className="text-[25px]">
+            #Protein 프로틴 #BCAA 아미노산 #Booster 부스터 #Creatine 크레아틴
+            #Gainer 게이너 #Vitamin 비타민 #Omega 3 오메가 3 #Beta-alanine
+            베타알라닌
+          </span>
+        </Marquee>
+        <Marquee
+          className="border-y border-[#DADADA] py-[20px]"
+          direction="right"
+          speed={90}
+        >
+          <span className="text-[25px]">
+            #Protein 프로틴 #BCAA 아미노산 #Booster 부스터 #Creatine 크레아틴
+            #Gainer 게이너 #Vitamin 비타민 #Omega 3 오메가 3 #Beta-alanine
+            베타알라닌
+          </span>
+        </Marquee>
       </div>
 
-      <div className="mt-10 flex h-40 w-full items-center justify-center bg-gray-100">
-        <span className="text-lg text-gray-600">3D 아이콘 입력</span>
-      </div>
-
-      <Link href="/survey" className="w-[343px]">
-        <button className="my-10 w-full rounded-lg bg-primary px-6 py-4 text-white">
+      <Link href="/survey" className="z-10">
+        <button className="mb-[30px] h-[50px] w-[273px] rounded-full bg-primary px-[14px] py-[10px] text-[16px] text-white shadow-[0px_1px_14px_rgba(0,0,0,0.25)]">
           제품 추천받으러 가기
         </button>
       </Link>

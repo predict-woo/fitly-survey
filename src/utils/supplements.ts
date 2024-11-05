@@ -120,34 +120,34 @@ export const getSupplements = (
 
   // [('30분 미만', '30분~1시간', '1시간~1시간 30분', '1시간 30분 이상')]
 
-  // 30분 미만 : #펌프 #무카페인 #!베타알라닌
-  // 30분~1시간 : #펌프 #무카페인 #약한 카페인 #!베타알라닌
+  // 30분 미만 : 펌프 무카페인 !베타알라닌
+  // 30분~1시간 : 펌프 무카페인 약한 카페인 !베타알라닌
 
-  // 1시간 ~ 1시간 30분 : #지구력 #고카페인
-  // 1시간 30분 이상 : #지구력 #고카페인
+  // 1시간 ~ 1시간 30분 : 지구력 고카페인
+  // 1시간 30분 이상 : 지구력 고카페인
 
   const durationPoints: number[] = supplements.map((supplement) => {
     switch (userInput.duration) {
       case '30분 미만':
-        return ['#펌프', '#무카페인', '#베타알라닌']
+        return ['펌프', '무카페인', '베타알라닌']
           .map((characteristic) =>
             supplement.characteristics.includes(characteristic)
           )
           .reduce((acc, curr) => acc + (curr ? 1 : 0), 0)
       case '30분~1시간':
-        return ['#펌프', '#무카페인', '#약한 카페인', '#베타알라닌']
+        return ['펌프', '무카페인', '약한 카페인', '베타알라닌']
           .map((characteristic) =>
             supplement.characteristics.includes(characteristic)
           )
           .reduce((acc, curr) => acc + (curr ? 1 : 0), 0)
       case '1시간~1시간 30분':
-        return ['#지구력', '#고카페인']
+        return ['지구력', '고카페인']
           .map((characteristic) =>
             supplement.characteristics.includes(characteristic)
           )
           .reduce((acc, curr) => acc + (curr ? 1 : 0), 0)
       case '1시간 30분 이상':
-        return ['#지구력', '#고카페인']
+        return ['지구력', '고카페인']
           .map((characteristic) =>
             supplement.characteristics.includes(characteristic)
           )
@@ -158,40 +158,40 @@ export const getSupplements = (
 
   // Time Point System
 
-  // 새벽 (공복) : #지구력 #약한 카페인 #!카보린
-  // 아침 : #카페인 안정 #고카페인 #!판크레아틴 (소화효소)
-  // #!비타민
-  // 오후 : #약한 카페인 #!글루타민 #!판크레아틴
-  // 저녁 : #펌핑 #무카페인 #아르기닌
-  // 늦은 밤 : #펌핑 #무카페인 #아르기닌
+  // 새벽 (공복) : 지구력 약한 카페인 !카보린
+  // 아침 : 카페인 안정 고카페인 !판크레아틴 (소화효소)
+  // !비타민
+  // 오후 : 약한 카페인 !글루타민 !판크레아틴
+  // 저녁 : 펌핑 무카페인 아르기닌
+  // 늦은 밤 : 펌핑 무카페인 아르기닌
   const timePoints: number[] = supplements.map((supplement) => {
     switch (userInput.time) {
       case '새벽':
-        return ['#지구력', '#약한 카페인', '#카보린']
+        return ['지구력', '약한 카페인', '카보린']
           .map((characteristic) =>
             supplement.characteristics.includes(characteristic)
           )
           .reduce((acc, curr) => acc + (curr ? 1 : 0), 0)
       case '아침':
-        return ['#카페인 안정', '#고카페인', '#판크레아틴', '#비타민']
+        return ['카페인 안정', '고카페인', '판크레아틴', '비타민']
           .map((characteristic) =>
             supplement.characteristics.includes(characteristic)
           )
           .reduce((acc, curr) => acc + (curr ? 1 : 0), 0)
       case '오후':
-        return ['#약한 카페인', '#글루타민', '#판크레아틴']
+        return ['약한 카페인', '글루타민', '판크레아틴']
           .map((characteristic) =>
             supplement.characteristics.includes(characteristic)
           )
           .reduce((acc, curr) => acc + (curr ? 1 : 0), 0)
       case '저녁':
-        return ['#펌핑', '#무카페인', '#아르기닌']
+        return ['펌핑', '무카페인', '아르기닌']
           .map((characteristic) =>
             supplement.characteristics.includes(characteristic)
           )
           .reduce((acc, curr) => acc + (curr ? 1 : 0), 0)
       case '늦은 밤':
-        return ['#펌핑', '#무카페인', '#아르기닌']
+        return ['펌핑', '무카페인', '아르기닌']
           .map((characteristic) =>
             supplement.characteristics.includes(characteristic)
           )
@@ -201,28 +201,28 @@ export const getSupplements = (
   })
 
   // SupplementImportance Point System
-  // 맛 -> #맛
-  // 효과, 브랜드, 성분의 안전성 -> #품질
-  // 가격 -> #가성비
+  // 맛 -> 맛
+  // 효과, 브랜드, 성분의 안전성 -> 품질
+  // 가격 -> 가성비
 
   const supplementImportancePoints: number[] = supplements.map((supplement) =>
     userInput.supplementImportance
       .map((importance): number => {
         if (
           ['맛'].includes(importance) &&
-          supplement.characteristics.includes('#맛')
+          supplement.characteristics.includes('맛')
         ) {
           return 1
         }
         if (
           ['효과', '브랜드', '성분의 안전성'].includes(importance) &&
-          supplement.characteristics.includes('#품질')
+          supplement.characteristics.includes('품질')
         ) {
           return 1
         }
         if (
           ['가격'].includes(importance) &&
-          supplement.characteristics.includes('#가성비')
+          supplement.characteristics.includes('가성비')
         ) {
           return 1
         }
@@ -231,9 +231,56 @@ export const getSupplements = (
       .reduce((acc, curr) => acc + curr, 0)
   )
 
+  const allergyPoints: number[] = supplements.map((supplement) =>
+    userInput.allergy
+      .map((allergy): number => {
+        switch (allergy) {
+          case '카페인 민감성':
+            return supplement.characteristics.includes('무카페인') ? 1 : 0
+          case '글루텐 불내증':
+            if (supplement.characteristics.includes('글루텐 프리')) {
+              return 1
+            } else if (supplement.characteristics.includes('글루텐')) {
+              return -1
+            }
+            return 0
+          default:
+            return 0
+        }
+      })
+      .reduce((acc, curr) => acc + curr, 0)
+  )
+
+  const formPoints: number[] = supplements.map((supplement) =>
+    userInput.supplementForm
+      .map((form): number => {
+        switch (form) {
+          case '알약 형태':
+            return supplement.characteristics.includes('알약') ? 1 : 0
+          case '액상 형태':
+            return supplement.characteristics.includes('액상') ? 1 : 0
+          case '파우더 형태':
+            return supplement.characteristics.includes('파우더') ? 1 : 0
+          default:
+            return 0
+        }
+      })
+      .reduce((acc, curr) => acc + curr, 0)
+  )
+
   const pricePoints: number[] = supplements.map((supplement) => {
     return Math.abs(supplement.price - userInput.price) / 30000
   })
+
+  console.log('supplementUsedPoints', supplementUsedPoints)
+  console.log('goalPoints', goalPoints)
+  console.log('frequencyPoints', frequencyPoints)
+  console.log('durationPoints', durationPoints)
+  console.log('timePoints', timePoints)
+  console.log('supplementImportancePoints', supplementImportancePoints)
+  console.log('allergyPoints', allergyPoints)
+  console.log('formPoints', formPoints)
+  console.log('pricePoints', pricePoints)
 
   const totalPoints = supplements.map((supplement, index) => {
     return (
@@ -243,6 +290,8 @@ export const getSupplements = (
       durationPoints[index] * 0.1 +
       timePoints[index] * 0.1 +
       supplementImportancePoints[index] * 0.1 +
+      allergyPoints[index] * 10 +
+      formPoints[index] * 1 +
       pricePoints[index] * 0.1
     )
   })

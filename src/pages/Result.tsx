@@ -5,6 +5,9 @@ import { useLocation } from 'wouter'
 import { Supplement, SupplementCategory } from 'utils/supplements'
 import { userInputStore } from 'state/input'
 import PreRegistration from 'components/PreRegistration'
+import { fetchDescription } from 'utils/fetch'
+import Modal from 'components/Modal'
+import Review from 'components/Review'
 const Result = () => {
   const supplements = resultStore((state) => state.supplements)
   const character = resultStore((state) => state.character)
@@ -17,6 +20,16 @@ const Result = () => {
       supplements: Supplement[]
     }[]
   >([])
+
+  const [descriptions, setDescriptions] = useState<
+    { name: string; description: string }[]
+  >([])
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  useEffect(() => {
+    fetchDescription().then(setDescriptions)
+  }, [])
 
   useEffect(() => {
     if (!userInput.name || !character.name || !supplements.length) {
@@ -42,9 +55,22 @@ const Result = () => {
     )
   }, [supplements, character, userInput, setLocation])
 
+  // enable modal after 2 minutes
+  useEffect(() => {
+    setTimeout(() => {
+      setIsModalOpen(true)
+    }, 2)
+  }, [])
+
   const handleBack = () => {
     setLocation('/loading')
   }
+
+  const handleReviewSubmit = (star: number, review: string) => {
+    setIsModalOpen(false)
+    console.log(star, review)
+  }
+
   return (
     <div className="flex size-full w-full flex-col items-center">
       <div className="mb-10 flex w-full justify-start">
@@ -54,14 +80,14 @@ const Result = () => {
         />
       </div>
       <div className="flex size-full flex-col">
-        <h2 className="text-[14px] text-gray-300">
+        <h2 className="text-[14px] text-[#9DA0A3]">
           {userInput.name}님께 딱 맞는 근육캐릭터는?
         </h2>
-        <h1 className="mt-[4px] text-[24px] font-bold">{character.name}</h1>
-        <div className="mt-4 flex h-64 w-full items-center justify-center bg-gray-200">
-          <span className="text-gray-500">Image Placeholder</span>
-        </div>
-        <h1 className="mt-[22px] text-[20px] font-bold">
+        <h1 className="mt-[4px] text-[24px] font-bold text-[#373D42]">
+          {character.name}
+        </h1>
+        <img src={character.image} alt={character.name} />
+        <h1 className="mt-[22px] text-[20px] font-bold text-[#373D42]">
           {userInput.name}님께 추천드리는 제품이에요
         </h1>
         {supplementsByCategory.map((category) => (
@@ -70,8 +96,10 @@ const Result = () => {
               {category.category}
             </h2>
             <p className="text-[14px] text-gray-500">
-              {category.supplements.length}개의 제품이 있어요 그리고 어쩌구
-              저쩌구 설명 추가해줘요
+              {
+                descriptions.find((d) => d.name === category.category)
+                  ?.description
+              }
             </p>
             <div className="mt-[24px] flex flex-col gap-[24px]">
               {category.supplements.map((supplement) => (
@@ -85,7 +113,7 @@ const Result = () => {
                     </p>
                     <div className="mt-[12px] flex items-center gap-4">
                       <span className="text-[12px] text-black">
-                        {supplement.price}원
+                        {supplement.price.toLocaleString()}원
                       </span>
                       <a
                         href={supplement.link}
@@ -107,6 +135,10 @@ const Result = () => {
         ))}
         <div className="mt-[75px]" />
         <PreRegistration />
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <Review onSubmit={handleReviewSubmit} />
+        </Modal>
+
         <div className="mt-[47px]" />
         <div className="mb-[24px] border-t border-gray-500 p-[12px]">
           <p className="flex gap-4 text-[14px] text-gray-500">

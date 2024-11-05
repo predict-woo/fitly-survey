@@ -20,13 +20,14 @@ function Survey() {
   }, [index])
 
   const userInput = userInputStore((state) => state.value)
-  console.log(userInput)
-
-  console.log(userInput)
 
   const setKey = userInputStore((state) => state.setKey)
 
   const handleNext = () => {
+    // 유효성 검사
+    if (question.validation && !question.validation(userInput[question.key]))
+      return
+
     if (!userInput[question.key]) return
     if (index === questions.length - 1) {
       setLocation('/loading')
@@ -45,15 +46,15 @@ function Survey() {
 
   return (
     <div className="flex size-full w-full flex-col items-center">
-      <div className="mb-10 flex w-full justify-start">
+      <div className="mb-10 flex w-full items-center justify-start gap-[24px]">
         <ArrowBackRoundedIcon
           onClick={handleBack}
-          style={{ width: '20px', height: '20px' }}
+          style={{ width: '24px', height: '24px' }}
         />
+        <ProgressBar length={questions.length} index={index + 1} />
       </div>
       <div className="flex size-full flex-col items-center justify-between">
         <div className="flex w-full flex-col items-center gap-[34px]">
-          <ProgressBar length={questions.length} index={index + 1} />
           <div className="flex w-full flex-col items-center gap-[40px]">
             <Question
               number={question.number}
@@ -78,6 +79,7 @@ function Survey() {
                   setKey(question.key, Number(e))
                 }}
                 placeholder={question.input.placeholder ?? ''}
+                suffix={question.input.suffix ?? ''}
               />
             )}
             {question.input.type === 'select' && (
@@ -128,7 +130,9 @@ function Survey() {
           className={`my-10 w-[340px] rounded-lg px-6 py-4 text-white ${
             !userInput[question.key] ||
             (Array.isArray(userInput[question.key]) &&
-              (userInput[question.key] as string[]).length === 0)
+              (userInput[question.key] as string[]).length === 0) ||
+            (question.validation &&
+              !question.validation(userInput[question.key]))
               ? 'cursor-not-allowed bg-gray-400'
               : 'bg-primary'
           }`}
