@@ -33,7 +33,12 @@ function Survey() {
       setLocation('/loading')
       return
     }
-    setIndex(index + 1)
+
+    if (question.number === 7 && userInput.supplementUsed === '없음') {
+      setIndex(index + 2)
+    } else {
+      setIndex(index + 1)
+    }
   }
 
   const handleBack = () => {
@@ -41,7 +46,11 @@ function Survey() {
       setLocation('/')
       return
     }
-    setIndex(index - 1)
+    if (userInput.supplementUsed === '없음' && question.number == 9) {
+      setIndex(index - 2)
+    } else {
+      setIndex(index - 1)
+    }
   }
 
   return (
@@ -57,7 +66,11 @@ function Survey() {
         <div className="flex w-full flex-col items-center gap-[34px]">
           <div className="flex w-full flex-col items-center gap-[40px]">
             <Question
-              number={question.number}
+              number={
+                userInput.supplementUsed === '없음' && question.number > 7
+                  ? question.number - 1
+                  : question.number
+              }
               title={question.title}
               subTitle={question.subTitle}
             />
