@@ -69,6 +69,10 @@ export const getSupplements = (
   // ]
 
   const supplementUsedPoints: number[] = supplements.map((supplement) => {
+    if (userInput.supplementUsed === '없음') {
+      return 0
+    }
+
     switch (supplement.category) {
       case '웨이프로틴':
         return userInput.supplementUsedType.includes('프로틴 파우더') ? 1 : 0
