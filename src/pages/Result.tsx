@@ -57,12 +57,9 @@ const Result = () => {
 
   // enable modal after 2 minutes
   useEffect(() => {
-    setTimeout(
-      () => {
-        setIsModalOpen(true)
-      },
-      2 * 60 * 1000
-    )
+    setTimeout(() => {
+      setIsModalOpen(true)
+    }, 30 * 1000)
   }, [])
 
   const handleBack = () => {
