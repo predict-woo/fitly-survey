@@ -110,7 +110,7 @@ function Survey() {
               />
             )}
             {question.input.type === 'select' && (
-              <div className="max-h-[250px] w-full overflow-y-auto">
+              <div className="max-h-[250px] overflow-y-auto">
                 <RadioGroup
                   value={
                     userInput[question.key]
@@ -124,7 +124,7 @@ function Survey() {
               </div>
             )}
             {question.input.type === 'checkbox' && (
-              <div className="max-h-[250px] w-full overflow-y-auto">
+              <div className="max-h-[250px] overflow-y-auto">
                 <RadioGroup
                   value={
                     userInput[question.key]
