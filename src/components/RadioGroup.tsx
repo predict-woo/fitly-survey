@@ -12,7 +12,7 @@ const RadioGroup = ({
   multiSelect: boolean
 }) => {
   return (
-    <div className="flex w-full flex-col gap-2">
+    <div className="flex w-[340px] flex-col gap-2">
       {labels.map((label) => (
         <Radio
           key={label}
