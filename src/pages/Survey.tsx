@@ -1,6 +1,6 @@
 import Question from '../components/Question'
 import Answer from '../components/Answer'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { questions, QuestionType } from '../state/input'
 import { userInputStore } from '../state/input'
 import RadioGroup from '../components/RadioGroup'
@@ -23,12 +23,29 @@ function Survey() {
 
   const setKey = userInputStore((state) => state.setKey)
 
+  const valid = useCallback((): boolean => {
+    if (question.validation && !question.validation(userInput[question.key]))
+      return false
+
+    if (
+      typeof userInput[question.key] === 'string' &&
+      userInput[question.key] === ''
+    )
+      return false
+
+    if (
+      Array.isArray(userInput[question.key]) &&
+      (userInput[question.key] as string[]).length === 0
+    )
+      return false
+
+    return true
+  }, [question, userInput])
+
   const handleNext = () => {
     // 유효성 검사
-    if (question.validation && !question.validation(userInput[question.key]))
-      return
+    if (!valid()) return
 
-    if (!userInput[question.key]) return
     if (index === questions.length - 1) {
       setLocation('/loading')
       return
