@@ -6,7 +6,7 @@ function Start() {
   return (
     <div className="flex size-full flex-col items-center justify-between pt-[50px] font-sans font-normal">
       <Title />
-      <div className="fixed bottom-[118px] left-0 z-0 w-full text-[#636363]">
+      <div className="fixed bottom-[72px] left-0 z-0 w-full text-[#636363]">
         <Marquee className="border-t border-[#DADADA] py-[14px]">
           <span className="text-[25px]">
             #Protein 프로틴 #BCAA 아미노산 #Booster 부스터 #Creatine 크레아틴
