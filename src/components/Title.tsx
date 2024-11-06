@@ -66,7 +66,7 @@ const Title = () => {
         </defs>
       </svg>
 
-      <h1 className="mb-[35px] mt-[45px] text-center text-[30px] font-bold">
+      <h1 className="my-[20px] text-center text-[30px] font-bold">
         나에게 딱 맞는 헬스 제품,
         <br />
         <span className="text-primary">Fitly</span>에서 쉽게 찾고
