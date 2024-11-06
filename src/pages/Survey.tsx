@@ -158,13 +158,7 @@ function Survey() {
         <button
           onClick={handleNext}
           className={`my-10 w-[340px] rounded-lg px-6 py-4 text-white ${
-            !userInput[question.key] ||
-            (Array.isArray(userInput[question.key]) &&
-              (userInput[question.key] as string[]).length === 0) ||
-            (question.validation &&
-              !question.validation(userInput[question.key]))
-              ? 'cursor-not-allowed bg-gray-400'
-              : 'bg-primary'
+            valid() ? 'cursor-not-allowed bg-gray-400' : 'bg-primary'
           }`}
         >
           다음
