@@ -4,10 +4,10 @@ import Title from 'components/Title'
 
 function Start() {
   return (
-    <div className="flex size-full flex-col items-center justify-between pt-[50px]">
+    <div className="flex size-full flex-col items-center justify-between pt-[50px] font-sans font-normal">
       <Title />
-      <div className="fixed bottom-[90px] left-0 z-0 w-full text-[#636363]">
-        <Marquee className="border-t border-[#DADADA] py-[20px]">
+      <div className="fixed bottom-[118px] left-0 z-0 w-full text-[#636363]">
+        <Marquee className="border-t border-[#DADADA] py-[14px]">
           <span className="text-[25px]">
             #Protein 프로틴 #BCAA 아미노산 #Booster 부스터 #Creatine 크레아틴
             #Gainer 게이너 #Vitamin 비타민 #Omega 3 오메가 3 #Beta-alanine
@@ -15,7 +15,7 @@ function Start() {
           </span>
         </Marquee>
         <Marquee
-          className="border-t border-[#DADADA] py-[20px]"
+          className="border-t border-[#DADADA] py-[14px]"
           direction="right"
           speed={60}
         >
@@ -25,7 +25,7 @@ function Start() {
             베타알라닌
           </span>
         </Marquee>
-        <Marquee className="border-t border-[#DADADA] py-[20px]" speed={70}>
+        <Marquee className="border-t border-[#DADADA] py-[14px]" speed={70}>
           <span className="text-[25px]">
             #Protein 프로틴 #BCAA 아미노산 #Booster 부스터 #Creatine 크레아틴
             #Gainer 게이너 #Vitamin 비타민 #Omega 3 오메가 3 #Beta-alanine
@@ -33,7 +33,7 @@ function Start() {
           </span>
         </Marquee>
         <Marquee
-          className="border-y border-[#DADADA] py-[20px]"
+          className="border-y border-[#DADADA] py-[14px]"
           direction="right"
           speed={90}
         >

@@ -1,6 +1,6 @@
 const Title = () => {
   return (
-    <div className="z-10 flex flex-col gap-[45px]">
+    <div className="z-10 flex flex-col">
       <svg
         width="310"
         height="55"
@@ -66,7 +66,7 @@ const Title = () => {
         </defs>
       </svg>
 
-      <h1 className="text-center text-[30px] font-bold">
+      <h1 className="mb-[35px] mt-[45px] text-center text-[30px] font-bold">
         나에게 딱 맞는 헬스 제품,
         <br />
         <span className="text-primary">Fitly</span>에서 쉽게 찾고
