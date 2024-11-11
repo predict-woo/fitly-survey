@@ -8,10 +8,15 @@ import PreRegistration from 'components/PreRegistration'
 import { fetchDescription } from 'utils/fetch'
 import Modal from 'components/Modal'
 import Review from 'components/Review'
+import axios from 'axios'
+
 const Result = () => {
   const supplements = resultStore((state) => state.supplements)
   const character = resultStore((state) => state.character)
   const userInput = userInputStore((state) => state.value)
+  const backendUrl = 'https://strong_life_backend.sw-andyye.workers.dev'
+  const [surveyId, setSurveyId] = useState('')
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setLocation] = useLocation()
   const [supplementsByCategory, setSupplementsByCategory] = useState<
@@ -66,9 +71,32 @@ const Result = () => {
     setLocation('/loading')
   }
 
-  const handleReviewSubmit = (star: number, review: string) => {
+  useEffect(() => {
+    const main = async () => {
+      const res = await axios.post(`${backendUrl}/survey`, userInput)
+      console.log(res)
+      setSurveyId(res.data.id)
+    }
+    main()
+  }, [userInput])
+
+  const handleReviewSubmit = async (star: number, review: string) => {
     setIsModalOpen(false)
     console.log(star, review)
+    const res = await axios.post(`${backendUrl}/review`, {
+      id: surveyId,
+      star,
+      review
+    })
+    console.log(res)
+  }
+
+  const handlePreRegistrationSubmit = async (email: string) => {
+    const res = await axios.post(`${backendUrl}/registration`, {
+      id: surveyId,
+      email
+    })
+    console.log(res)
   }
 
   return (
@@ -134,7 +162,7 @@ const Result = () => {
           </div>
         ))}
         <div className="mt-[75px]" />
-        <PreRegistration />
+        <PreRegistration onSubmit={handlePreRegistrationSubmit} />
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <Review onSubmit={handleReviewSubmit} />
         </Modal>

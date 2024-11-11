@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
 
+export type ReviewInfo = {
+  star: number
+  review: string
+}
+
 const Review = ({
   onSubmit
 }: {

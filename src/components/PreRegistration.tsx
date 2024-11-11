@@ -1,4 +1,12 @@
-const PreRegistration = () => {
+import { useState } from 'react'
+
+const PreRegistration = ({
+  onSubmit
+}: {
+  onSubmit: (email: string) => void
+}) => {
+  const [email, setEmail] = useState('')
+
   return (
     <div className="w-full">
       <h1 className="text-[24px] font-medium text-[#232323]">
@@ -18,8 +26,13 @@ const PreRegistration = () => {
           type="email"
           placeholder="이메일을 입력해주세요"
           className="w-full rounded-none border-b border-black outline-none focus:outline-none"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <button className="whitespace-nowrap rounded-md border border-black px-4 py-2 text-[14px] font-semibold">
+        <button
+          className="whitespace-nowrap rounded-md border border-black px-4 py-2 text-[14px] font-semibold"
+          onClick={() => onSubmit(email)}
+        >
           알림 신청하기
         </button>
       </div>
