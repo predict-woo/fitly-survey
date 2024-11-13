@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import ReactGA from 'react-ga4'
 const PreRegistration = ({
   onSubmit
 }: {
@@ -34,10 +34,12 @@ const PreRegistration = ({
           onClick={() => {
             onSubmit(email)
             setEmail('')
+            ReactGA.event({
+              category: 'button-click',
+              action: 'submit-pre-registration',
+              label: 'submit-pre-registration'
+            })
           }}
-          id="submit-pre-registration"
-          data-umami-event="submit-pre-registration"
-          data-umami-event-type="click"
         >
           알림 신청하기
         </button>

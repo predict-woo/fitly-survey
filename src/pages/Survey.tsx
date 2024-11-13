@@ -6,7 +6,7 @@ import { userInputStore } from '../state/input'
 import RadioGroup from '../components/RadioGroup'
 import Slider from '../components/Slider'
 import ProgressBar from 'components/ProgressBar'
-
+import ReactGA from 'react-ga4'
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import { useLocation } from 'wouter'
 function Survey() {
@@ -40,6 +40,11 @@ function Survey() {
   }, [question, userInput])
 
   const handleNext = () => {
+    ReactGA.event({
+      category: 'button-click',
+      action: 'submit-user-input',
+      label: question.number.toString()
+    })
     // 유효성 검사
     if (!valid()) return
 
@@ -157,9 +162,6 @@ function Survey() {
           className={`my-10 w-[340px] rounded-lg px-6 py-4 text-white ${
             !valid() ? 'cursor-not-allowed bg-gray-400' : 'bg-primary'
           }`}
-          id="submit-user-input"
-          data-umami-event="submit-user-input"
-          data-umami-event-type="click"
         >
           다음
         </button>

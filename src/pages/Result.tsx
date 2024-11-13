@@ -9,7 +9,7 @@ import { fetchDescription } from 'utils/fetch'
 import Modal from 'components/Modal'
 import Review from 'components/Review'
 import axios from 'axios'
-
+import ReactGA from 'react-ga4'
 const Result = () => {
   const supplements = resultStore((state) => state.supplements)
   const character = resultStore((state) => state.character)
@@ -147,9 +147,13 @@ const Result = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="rounded-full bg-primary px-[10px] py-[4px] text-[12px] font-medium text-white"
-                        id="purchase-supplement"
-                        data-umami-event="purchase-supplement"
-                        data-umami-event-type="click"
+                        onClick={() => {
+                          ReactGA.event({
+                            category: 'link-click',
+                            action: 'purchase-supplement',
+                            label: supplement.name
+                          })
+                        }}
                       >
                         구매하러 가기
                       </a>

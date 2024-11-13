@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded'
-
+import ReactGA from 'react-ga4'
 export type ReviewInfo = {
   star: number
   review: string
@@ -39,11 +39,16 @@ const Review = ({
         />
       </div>
       <button
-        onClick={() => onSubmit(star, review)}
+        onClick={() => {
+          onSubmit(star, review)
+          ReactGA.event({
+            category: 'button-click',
+            action: 'submit-review',
+            label: 'submit-review',
+            value: star
+          })
+        }}
         className="rounded-[12px] bg-primary px-[10px] py-[14px] font-[16px] font-medium text-white"
-        id="submit-review"
-        data-umami-event="submit-review"
-        data-umami-event-type="click"
       >
         제출하기
       </button>
