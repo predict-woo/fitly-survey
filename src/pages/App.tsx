@@ -3,6 +3,9 @@ import Start from './Start'
 import Survey from './Survey'
 import Loading from './Loading'
 import Result from './Result'
+import ReactGA from 'react-ga4'
+
+ReactGA.initialize('G-MZPV027YNS')
 
 const App = () => (
   <div className="flex size-full h-dvh flex-col items-center justify-center bg-white">
