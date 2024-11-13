@@ -75,14 +75,13 @@ const Result = () => {
     const main = async () => {
       const res = await axios.post(`${backendUrl}/survey`, userInput)
       console.log(res)
-      setSurveyId(res.data.id)
+      setSurveyId(res.data.key)
     }
     main()
   }, [userInput])
 
   const handleReviewSubmit = async (star: number, review: string) => {
     setIsModalOpen(false)
-    console.log(star, review)
     const res = await axios.post(`${backendUrl}/review`, {
       id: surveyId,
       star,

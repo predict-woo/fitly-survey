@@ -31,7 +31,10 @@ const PreRegistration = ({
         />
         <button
           className="whitespace-nowrap rounded-md border border-black px-4 py-2 text-[14px] font-semibold"
-          onClick={() => onSubmit(email)}
+          onClick={() => {
+            onSubmit(email)
+            setEmail('')
+          }}
         >
           알림 신청하기
         </button>
