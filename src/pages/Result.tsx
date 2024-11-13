@@ -147,6 +147,9 @@ const Result = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="rounded-full bg-primary px-[10px] py-[4px] text-[12px] font-medium text-white"
+                        id="purchase-supplement"
+                        data-umami-event="purchase-supplement"
+                        data-umami-event-type="click"
                       >
                         구매하러 가기
                       </a>
