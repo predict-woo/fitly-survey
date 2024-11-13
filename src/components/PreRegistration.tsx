@@ -35,6 +35,9 @@ const PreRegistration = ({
             onSubmit(email)
             setEmail('')
           }}
+          id="submit-pre-registration"
+          data-umami-event="submit-pre-registration"
+          data-umami-event-type="click"
         >
           알림 신청하기
         </button>

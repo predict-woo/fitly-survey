@@ -19,6 +19,9 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
         <button
           onClick={onClose}
           className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+          id="close-modal"
+          data-umami-event="close-modal"
+          data-umami-event-type="click"
         >
           ✕
         </button>

@@ -157,6 +157,9 @@ function Survey() {
           className={`my-10 w-[340px] rounded-lg px-6 py-4 text-white ${
             !valid() ? 'cursor-not-allowed bg-gray-400' : 'bg-primary'
           }`}
+          id="submit-user-input"
+          data-umami-event="submit-user-input"
+          data-umami-event-type="click"
         >
           다음
         </button>

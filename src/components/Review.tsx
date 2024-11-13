@@ -41,6 +41,9 @@ const Review = ({
       <button
         onClick={() => onSubmit(star, review)}
         className="rounded-[12px] bg-primary px-[10px] py-[14px] font-[16px] font-medium text-white"
+        id="submit-review"
+        data-umami-event="submit-review"
+        data-umami-event-type="click"
       >
         제출하기
       </button>
