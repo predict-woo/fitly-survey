@@ -22,20 +22,23 @@ const Share = ({
       action: 'kakao-share',
       label: 'kakao-share'
     })
-    window.Kakao.Link.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: '나에게 딱 맞는 헬스 제품 추천 검사'
-      }
+    // window.Kakao.Share.sendCustom({
+    //   templateId: 114181,
+    //   templateArgs: {
+    //     image: shareImage
+    //   }
+    // })
+    window.Kakao.Share.sendScrap({
+      requestUrl: 'https://beta.fitly.fitness/'
     })
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-[12px] text-[16px] font-bold">
+    <div className="flex flex-col items-center justify-center gap-[12px] text-[16px]">
       공유하기
-      <div className="flex items-center gap-[12px]">
+      <div className="flex items-center gap-[12px] text-[10px]">
         <div
-          className="flex flex-col items-center justify-center gap-[6px]"
+          className="flex cursor-pointer flex-col items-center justify-center gap-[6px] rounded-[10px] p-2 hover:bg-gray-100 active:bg-gray-200"
           onClick={handleKakaoShare}
         >
           <svg
@@ -75,7 +78,7 @@ const Share = ({
           카카오톡
         </div>
         <div
-          className="flex flex-col items-center justify-center gap-[6px]"
+          className="flex cursor-pointer flex-col items-center justify-center gap-[6px] rounded-[10px] p-2 hover:bg-gray-100 active:bg-gray-200"
           onClick={handleUrlCopy}
         >
           <svg

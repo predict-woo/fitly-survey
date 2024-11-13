@@ -10,6 +10,7 @@ import Modal from 'components/Modal'
 import Review from 'components/Review'
 import axios from 'axios'
 import ReactGA from 'react-ga4'
+import Share from 'components/Share'
 const Result = () => {
   const supplements = resultStore((state) => state.supplements)
   const character = resultStore((state) => state.character)
@@ -168,6 +169,10 @@ const Result = () => {
           </div>
         ))}
         <div className="mt-[75px]" />
+        <Share
+          shareUrl="https://beta.fitly.fitness/"
+          shareImage={character.image || ''}
+        />
         <PreRegistration onSubmit={handlePreRegistrationSubmit} />
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <Review onSubmit={handleReviewSubmit} />
